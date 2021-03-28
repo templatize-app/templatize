@@ -3,6 +3,9 @@ version: 0.2
 env:
   shell: bash
   git-credential-helper: no
+  variables:
+    AWS_DEFAULT_REGION: "us-east-2"
+    TF_IN_AUTOMATION: "true"
 
 phases:
   install:
@@ -10,17 +13,32 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-      - echo Installing necessary components...
+      - echo installing terraform...
       - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
       - sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
       - sudo apt install terraform
+      - echo installing snyk...
+      - npm install -g snyk
   pre_build:
     commands:
-      - echo Entered the pre_build phase...
+      - |
+        terraform init \
+          -backend-config="bucket=${TMPLTZ_TFSTATE_S3}" \
+          -backend-config="key=codebuild/tfstate" \
+          -backend-config="dynamodb_table=${TMPLTZ_TFLOCK_DYNAMODB}" \
+          -input=false \
+          -no-color
+      - |
+        terraform plan \
+          -out="tf-plan-json" \
+          -var "domain=templatize.app" \
+          -var "environment=prod" \
+          -input=false \
+          -no-color
+      - snyk iac test ./tf-plan.json --experimental
   build:
     commands:
-      - echo Entered the build phase...
+      - terraform apply -auto-approve -compact-warnings -no-color tf-plan.json
   post_build:
     commands:
-      - echo Entered the post_build phase...
       - echo Build completed on `date`
