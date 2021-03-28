@@ -1,0 +1,68 @@
+### General ###
+*.zip
+tmp/
+temp/
+
+# dotenv environment variables file
+.env
+.env.test
+.env*.local
+
+
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# DynamoDB Local files
+.dynamodb/
+
+### Ember ###
+# see https://github.com/ember-cli/ember-cli/blob/master/blueprints/app/files/gitignore
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/bower_components
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+
+### Terraform ###
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Terraform lock file
+**/.terraform.lock.hcl
+
+# Crash log files
+crash.log
+
+# Ignore .tfvars
+#
+*.tfvars
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+*tfplan*
