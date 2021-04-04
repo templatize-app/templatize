@@ -24,20 +24,25 @@ npm-debug.log*
 ### Ember ###
 # see https://github.com/ember-cli/ember-cli/blob/master/blueprints/app/files/gitignore
 # compiled output
-/dist
+*/dist
 /tmp
 
 # dependencies
-/node_modules
-/bower_components
+*/node_modules
+*/bower_components
 
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
+*/coverage/*
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+# ember-try
+/.node_modules.ember-try/
+/bower.json.ember-try
+/package.json.ember-try
 
 ### Terraform ###
 # Local .terraform directories
@@ -66,3 +71,6 @@ override.tf.json
 
 # Ignore tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 *tfplan*
+
+# Ignore the Backend Terraform Configuration
+backend.hcl

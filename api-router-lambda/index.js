@@ -1,14 +1,18 @@
-const AWS = require("aws-sdk");
+'use strict';
+
+const AWS = require('aws-sdk'); 
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.TMPLTZ_TABLENAME;
 
-exports.handler = async (event, context) => {
+exports.handler =  async function(event, context) {
   let body;
   let statusCode = 200;
   const headers = {
     "Content-Type": "application/json"
   };
+
+  console.log(event.requestContext.authorizer.jwt);
 
   try {
     switch (event.routeKey) {
@@ -17,7 +21,7 @@ exports.handler = async (event, context) => {
           .delete({
             TableName: tableName,
             Key: {
-              user: context.authorizer.claims.emailID,
+              user: event.requestContext.authorizer.jwt.claims.emailID,
               id: event.pathParameters.template_id              
             }
           })
@@ -75,4 +79,4 @@ exports.handler = async (event, context) => {
     body,
     headers
   };
-};
+}
