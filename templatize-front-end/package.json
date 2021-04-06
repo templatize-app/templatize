@@ -2,10 +2,14 @@
   "name": "templatize-front-end",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for templatize-front-end goes here",
-  "repository": "",
+  "description": "Front end for Templatize.app",
+  "repository": "https://github.com/templatize-app/templatize",
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Robert Keyser",
+    "email": "robert@rkeyser.net",
+    "url": "https://www.linkedin.com/in/robertkeyser/"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -68,7 +72,7 @@
     "sass": "^1.32.8"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "14.x"
   },
   "ember": {
     "edition": "octane"

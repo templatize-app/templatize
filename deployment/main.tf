@@ -20,8 +20,12 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 2.19"
     }
+    heroku = {
+      source  = "heroku/heroku"
+      version = "~> 4.1"
+    }
     http = {
-      source = "hashicorp/http"
+      source  = "hashicorp/http"
       version = "~> 2.1"
     }
     tls = {
@@ -37,10 +41,16 @@ provider "auth0" {
   client_id     = var.auth0_client_id
   client_secret = var.auth0_client_secret
 }
-provider "aws" {}
+provider "aws" {
+  region = "us-east-2"
+}
 provider "cloudflare" {
-  api_token = var.cloudflare_api_token
+  api_token            = var.cloudflare_api_token
   api_user_service_key = var.cloudflare_origin_ca_key
+}
+provider "heroku" {
+  email   = var.heroku_email
+  api_key = var.heroku_api_key
 }
 provider "http" {}
 provider "tls" {}
@@ -78,5 +88,17 @@ module "api_backend" {
   environment        = "prod"
   auth0_account_name = var.auth0_account_name
   auth0_logo_url     = var.auth0_logo_url
+  cloudflare_zone_id = cloudflare_zone_settings_override.settings.zone_id
+}
+
+module "front_end" {
+  source = "./modules/front-end"
+
+  domain             = var.domain
+  app_name           = "templatize-app"
+  app_directory      = "${path.root}/../templatize-front-end"
+  auth_callback_url  = module.api_backend.auth_callback_url
+  auth0_client_id    = var.auth0_web_client_id
+  auth0_domain       = var.auth0_account_name
   cloudflare_zone_id = cloudflare_zone_settings_override.settings.zone_id
 }

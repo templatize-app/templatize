@@ -1,22 +1,22 @@
 resource "auth0_client" "my_client" {
-  name = "Templatize"
-  description = "templatize.app Application Authentication"
-  app_type = "spa"
-  custom_login_page_on = true
-  is_first_party = true
+  name                                = "Templatize"
+  description                         = "templatize.app Application Authentication"
+  app_type                            = "spa"
+  custom_login_page_on                = true
+  is_first_party                      = true
   is_token_endpoint_ip_header_trusted = true
-  token_endpoint_auth_method = "client_secret_post"
-  oidc_conformant = false
-  callbacks = [ "https://${var.domain}/callback" ]
-  allowed_origins = [ "https://${var.domain}" ]
-  grant_types = [ "authorization_code", "http://auth0.com/oauth/grant-type/password-realm", "implicit", "password", "refresh_token" ]
-  allowed_logout_urls = [ "https://${var.domain}" ]
-  web_origins = [ "https://${var.domain}" ]
-  
+  token_endpoint_auth_method          = "client_secret_post"
+  oidc_conformant                     = false
+  callbacks                           = ["https://${var.domain}/callback"]
+  allowed_origins                     = ["https://${var.domain}"]
+  grant_types                         = ["authorization_code", "http://auth0.com/oauth/grant-type/password-realm", "implicit", "password", "refresh_token"]
+  allowed_logout_urls                 = ["https://${var.domain}"]
+  web_origins                         = ["https://${var.domain}"]
+
   jwt_configuration {
     lifetime_in_seconds = 300
-    secret_encoded = true
-    alg = "RS256"
+    secret_encoded      = true
+    alg                 = "RS256"
     scopes = {
       foo = "bar"
     }

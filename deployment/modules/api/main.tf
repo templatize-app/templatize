@@ -17,7 +17,7 @@ terraform {
       version = "~> 2.0"
     }
     http = {
-      source = "hashicorp/http"
+      source  = "hashicorp/http"
       version = "~> 2.1"
     }
     tls = {

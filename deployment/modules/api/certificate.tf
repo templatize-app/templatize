@@ -27,7 +27,7 @@ resource "cloudflare_origin_ca_certificate" "prod_api_origin" {
   csr                = tls_cert_request.csr.cert_request_pem
   hostnames          = ["api.${var.domain}"]
   request_type       = "origin-rsa"
-  requested_validity = 500
+  requested_validity = 730
 }
 
 resource "aws_acm_certificate" "prod_cert" {

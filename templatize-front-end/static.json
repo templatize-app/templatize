@@ -1,0 +1,5 @@
+{
+    "canonical_host": "${TMPLTZ_DOMAIN}",
+    "clean_urls": true,
+    "root": "dist/"
+}

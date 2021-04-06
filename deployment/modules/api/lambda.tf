@@ -29,7 +29,7 @@ resource "aws_iam_role" "lambda_role" {
   tags = local.tags
 }
 
-resource "aws_iam_policy" "lambda_dynamo_connectivity"{
+resource "aws_iam_policy" "lambda_dynamo_connectivity" {
   name   = "allowLambdaDynamoDBAccess"
   policy = templatefile("${path.module}/iam_policies/lambda_role_policy.json.tpl", { dynamo_arn = aws_dynamodb_table.template_table.arn })
 }
@@ -39,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "attach" {
   policy_arn = aws_iam_policy.lambda_dynamo_connectivity.arn
 }
 
-resource "aws_lambda_permission" "permissions"{
+resource "aws_lambda_permission" "permissions" {
   statement_id  = "AllowLambdaInvoke"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.template_lambda_router.function_name
