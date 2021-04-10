@@ -1,6 +1,7 @@
 'use strict';
 
 const AUTH_CONFIG = require('./auth0-variables');
+const TMPLTZ_CONFIG = require('./tmpltz-variables');
 
 module.exports = function (environment) {
   let ENV = {
@@ -53,6 +54,10 @@ module.exports = function (environment) {
     clientId: AUTH_CONFIG.clientId,
     domain: AUTH_CONFIG.domain,
     callbackUrl: AUTH_CONFIG.callbackUrl
+  }
+
+  ENV.ajax = {
+    domain: TMPLTZ_CONFIG.apiDomain
   }
 
   return ENV;

@@ -2,6 +2,8 @@
 
 $branding-light-green: #7BBA9B;
 $branding-dark-green: #2F735A;
+$branding-contrast1: #223666;
+$branding-contrast2: #F0436B;
 $light-gray-backing:  #ebecec;
 
 * {
@@ -103,5 +105,12 @@ $breakpoint: 768px;
         display: none;
     }
 }
+
+::selection {
+    background: rgba($branding-contrast1, 0.3); /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: rgba($branding-contrast1, 0.3); /* Gecko Browsers */
+  }
 
 @import "ember-bootstrap/bootstrap";

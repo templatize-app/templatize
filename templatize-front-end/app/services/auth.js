@@ -80,7 +80,7 @@ export default Service.extend({
   logout() {
     this.get('auth0').logout({
       clientID: config.auth0.clientId,
-      returnTo: config.auth0.domain
+      returnTo: config.auth0.webUrl
     });
   }
 });

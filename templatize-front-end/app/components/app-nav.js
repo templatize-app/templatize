@@ -25,9 +25,7 @@ export default Component.extend({
    * From service/auth, removing the saved token from the session.
    */
     logout() {
-      this
-        .get('auth')
-        .logout()
+      this.get('auth').logout();
     }
   }
 });
