@@ -1,0 +1,49 @@
+<mat-horizontal-stepper [linear]=true #stepper>
+    <mat-step [stepControl]="firstFormGroup" [optional]="true">
+      <form [formGroup]="firstFormGroup" label="Template Details" state="template">
+        <mat-form-field>
+          <mat-label>Template Name</mat-label>
+          <input matInput placeholder="My super cool template" formControlName="title" required>
+        </mat-form-field>
+        <quill-editor matInput formControlName="templateText" format="json" #editor></quill-editor>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Review">
+      <mat-card>
+        <mat-card-title>
+          {{firstFormGroup.controls.title.value}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          Template
+        </mat-card-subtitle>
+        <mat-card-content>
+          <quill-view [content]="firstFormGroup.controls.templateText.value" format="json" theme="snow"></quill-view>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-title>
+          <h1>Variables</h1>
+        </mat-card-title>
+        <mat-card-content>
+          <mat-list *ngFor="let variable of variablesFound">
+            <mat-list-item> {{variable.substring(2, variable.length-1)}} </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button type="reset" (click)="stepper.reset()">Reset</button>
+        <button mat-button type="submit" (click)="createTemplate()">Submit</button>
+      </div>
+    </mat-step>
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="template">
+        <mat-icon>create</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="vars">
+        <mat-icon>dynamic_form</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>

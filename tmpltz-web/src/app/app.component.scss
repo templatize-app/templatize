@@ -1,0 +1,31 @@
+@import '../styles/variables';
+
+* {
+    font-family: 'Source Serif Pro', serif;
+}
+
+.app-pane {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+app-topNav {
+    display: flex;
+}
+
+app-footer {
+    position: absolute;
+    background-color: $light-back;
+    bottom: 0;
+    width: 100%;
+    height: auto; 
+}
+
+::selection {
+    background: rgba($branding-accent, 0.3); /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: rgba($branding-accent, 0.3); /* Gecko Browsers */
+}
+
+

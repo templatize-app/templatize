@@ -1,0 +1,53 @@
+@import '../styles/variables';
+
+mat-toolbar {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    min-height: 20px;
+}
+
+span.logo {
+    font-size: 2rem;
+    background: $branding-light;
+    background: -webkit-linear-gradient(to right, $branding-light 0%, $branding-dark 100%);
+    background: -moz-linear-gradient(to right, $branding-light 0%, $branding-dark 100%);
+    background: linear-gradient(to right, $branding-light 0%, $branding-dark 100%);   
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+span.mobile-mini {
+    font-size: 40px;
+    display: none;
+}
+
+span.spacer {
+    flex: 1 1 auto;
+}
+
+app-login {
+    float: right;
+    color: $light-back;
+}
+
+$breakpoint: 768px;
+@media (max-width: $breakpoint) {
+    span.logo {
+        color: $branding-light;
+        -webkit-text-fill-color: $branding-light;
+        background: none;
+        background-clip:unset;
+        -webkit-background-clip: unset;
+    }
+
+    span.mobile-mini {
+        font-size: 40px;
+        display: block;
+    }
+
+    span.regular-size {
+        display: none;
+    }
+}

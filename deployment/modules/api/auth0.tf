@@ -4,10 +4,10 @@ resource "auth0_client" "my_client" {
   app_type                            = "spa"
   custom_login_page_on                = true
   is_first_party                      = true
-  is_token_endpoint_ip_header_trusted = true
-  token_endpoint_auth_method          = "client_secret_post"
+  is_token_endpoint_ip_header_trusted = false
+  token_endpoint_auth_method          = "none"
   oidc_conformant                     = false
-  callbacks                           = ["https://${var.domain}/callback"]
+  callbacks                           = ["https://${var.domain}"]
   allowed_origins                     = ["https://${var.domain}"]
   grant_types                         = ["authorization_code", "http://auth0.com/oauth/grant-type/password-realm", "implicit", "password", "refresh_token"]
   allowed_logout_urls                 = ["https://${var.domain}"]

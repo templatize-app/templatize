@@ -3,6 +3,11 @@ variable "domain" {
   type        = string
 }
 
+variable "api_domain" {
+  description = "The api domain, e.g. api.example.com"
+  type        = string
+}
+
 variable "app_name" {
   description = "The name of the application."
   type        = string

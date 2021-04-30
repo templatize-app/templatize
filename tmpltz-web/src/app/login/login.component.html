@@ -1,0 +1,16 @@
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <button mat-icon-button (click)="auth.logout({ returnTo: document.location.origin })"
+      matTooltip="Log out"
+        [matTooltipShowDelay]="showDelay.value"
+        [matTooltipHideDelay]="hideDelay.value" >
+        <mat-icon>logout</mat-icon>
+    </button>
+</ng-container>
+<ng-template #loggedOut>
+    <button mat-icon-button (click)="auth.loginWithRedirect()" 
+        matTooltip="Log in!"
+        [matTooltipShowDelay]="showDelay.value"
+        [matTooltipHideDelay]="hideDelay.value">
+        <mat-icon>login</mat-icon>
+    </button>
+</ng-template>

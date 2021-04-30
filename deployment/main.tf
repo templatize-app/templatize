@@ -96,7 +96,8 @@ module "front_end" {
 
   domain             = var.domain
   app_name           = "templatize-app"
-  app_directory      = "${path.root}/../templatize-front-end"
+  api_domain         = module.api_backend.api_domain
+  app_directory      = "${path.root}/../tmpltz-web"
   auth_callback_url  = module.api_backend.auth_callback_url
   auth0_client_id    = var.auth0_web_client_id
   auth0_domain       = var.auth0_account_name

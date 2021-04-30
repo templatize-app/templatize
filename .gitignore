@@ -74,3 +74,6 @@ override.tf.json
 
 # Ignore the Backend Terraform Configuration
 backend.hcl
+
+# Personal Dev Files
+setup.ps1
