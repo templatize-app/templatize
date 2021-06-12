@@ -6,6 +6,7 @@ env:
   variables:
     AWS_DEFAULT_REGION: "us-east-2"
     TF_IN_AUTOMATION: "true"
+    APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE: "true"
 
 phases:
   install:
@@ -35,7 +36,7 @@ phases:
       - |
         terraform plan \
           -json
-          -out="tf-plan-json" \
+          -out="tf-plan" \
           -var "domain=${TMPLTZ_DOMAIN}" \
           -var "environment=prod" \
           -var "auth0_account_name=${AUTH0_DOMAIN}" \
@@ -45,10 +46,11 @@ phases:
           -var "heroku_email=${HEROKU_EMAIL}" \
           -input=false \
           -no-color
+      - terraform show ./tf-plan > ./tf-plan.json
       - snyk iac test ./tf-plan.json
   build:
     commands:
-      - terraform apply -auto-approve -compact-warnings -no-color tf-plan.json
+      - terraform apply -auto-approve -compact-warnings -no-color tf-plan
   post_build:
     commands:
       - echo Build completed on `date`
