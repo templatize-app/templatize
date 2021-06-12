@@ -33,7 +33,6 @@ phases:
           -no-color
       - |
         terraform plan \
-          -json
           -out="tf-plan" \
           -var "domain=${TMPLTZ_DOMAIN}" \
           -var "environment=prod" \
