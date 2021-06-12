@@ -23,6 +23,7 @@ phases:
       - npm install -g snyk
   pre_build:
     commands:
+      - cd deployment
       - |
         terraform init \
           -backend-config="bucket=${TMPLTZ_TFSTATE_S3}" \
