@@ -42,7 +42,6 @@ phases:
           -var "auth0_logo_url=${AUTH0_LOGO}" \
           -var "auth0_web_client_id=${AUTH0_WEB_CLIENT_ID}" \
           -var "heroku_email=${HEROKU_EMAIL}" \
-          
           -input=false \
           -no-color
       - snyk iac test ./tf-plan.json --experimental
