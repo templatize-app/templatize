@@ -83,13 +83,13 @@ resource "aws_apigatewayv2_deployment" "production" {
   description = "Production deployment"
 
   triggers = {
-    redeployment = sha1(join(",", tolist(
+    redeployment = sha1(join(",", tolist([
       jsonencode(aws_apigatewayv2_integration.template),
       jsonencode(aws_apigatewayv2_route.default_route),
       jsonencode(aws_apigatewayv2_route.template),
       jsonencode(aws_apigatewayv2_route.templates),
       jsonencode(aws_apigatewayv2_route.template_with_id),
-    )))
+    ])))
   }
 
   lifecycle {
