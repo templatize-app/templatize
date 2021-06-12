@@ -33,6 +33,7 @@ phases:
           -no-color
       - |
         terraform plan \
+          -json \
           -out="tf-plan" \
           -var "domain=${TMPLTZ_DOMAIN}" \
           -var "environment=prod" \
@@ -43,7 +44,7 @@ phases:
           -var "heroku_email=${HEROKU_EMAIL}" \
           -input=false \
           -no-color
-      - terraform show ./tf-plan > ./tf-plan.json
+      - terraform show -json ./tf-plan > ./tf-plan.json
       - snyk iac test ./tf-plan.json
   build:
     commands:
