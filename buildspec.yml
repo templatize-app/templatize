@@ -44,7 +44,7 @@ phases:
           -var "heroku_email=${HEROKU_EMAIL}" \
           -input=false \
           -no-color
-      - snyk iac test ./tf-plan.json --experimental
+      - snyk iac test ./tf-plan.json
   build:
     commands:
       - terraform apply -auto-approve -compact-warnings -no-color tf-plan.json
