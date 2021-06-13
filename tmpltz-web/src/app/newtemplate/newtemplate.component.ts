@@ -53,7 +53,7 @@ export class NewtemplateComponent implements OnInit {
     })
   }
   createTemplate(): void {
-    this.http.put('/template',
+    this.http.put('https://@@grunt-API_DOMAIN/template',
       {
         id: uuidv4(),
         template: this.firstFormGroup.controls.templateText.value,
